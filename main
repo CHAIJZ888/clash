@@ -1,0 +1,30 @@
+tar zxvf Clash.for.Windows-0.20.39-x64-linux.tar.gz
+解压完成后，可以将文件夹改名并移到/opt/：目录中（一般我们把安装的软件放在这里）：
+mv Clash\ for\ Windows-0.20.39-x64-linux /opt/clash-GUI
+cfw就是 clash for windows的意思，原作者把gui界面也移植到了linux中，我们可以运行以下命令打开：
+./cfw
+
+配置桌面图标
+clash for windowslinux版本默认是没有桌面图标的，如果退出了就只能重新通过命令行进入，比较麻烦，所以这里我们配置一下桌面图标。
+
+进入~/.local/share/applications目录：
+cd ~/.local/share/applications
+创建clash_gui.desktop：
+vim clash_gui.desktop
+[Desktop Entry]
+Name=clash for linux
+Icon=/opt/clash-GUI/clash/clash.png
+Exec=/opt/clash-GUI/clash/cfw
+Type=Application
+需要根据自己的情况修改的只有以下两个字段：
+Icon 是桌面图标所在地址，可以自己网上找一个clash图标下载即可。
+Exec 表示cfw命令，这里我的cfw文件是在/opt/clash-GUI/clash/下，所以我的执行命令如上所是。
+然后保存退出。
+最后增加权限:
+chmod a+x clash_gui.desktop
+然后便可在应用程序中看到clash的桌面图标了，下次我们直接点击桌面图标进入即可，右键图标还可以选择加入图标。
+开启系统代理
+不同于windows版本的clash-gui，linux下的系统代理需要自己在系统的网络中进行手动设置，设置过程如下：
+打开ubuntu的系统设置，选择网络—>网络代理
+将网络代理切换为手动，如图所示，将HTTP和HTTPS代理端口填写为上面获取到的HTTP端口，Socks主机端口号也填写成如下形式。
+这样系统代理部分就完成了，之后只要在clash中选择节点通常就可以使用了。如果需要关闭代理，那么同样把网络代理从手动改为关闭即可
